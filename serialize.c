@@ -35,3 +35,12 @@ buff->b = realloc(buff->b, buff->size);
     return;
 }
 
+//De-serialization
+void de_serialize_data(char *dest, ser_buff_t *buffer, int data_size){
+	assert(buffer && buffer->data && data_size);
+	if(data_size == 0) return;
+	assert((buffer->total_size - buffer->next) >= data_size);
+
+	memcpy(dest, buffer->data + buffer->next, data_size);
+	buffer->next += data_size;
+}
