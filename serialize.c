@@ -44,3 +44,17 @@ void de_serialize_data(char *dest, ser_buff_t *buffer, int data_size){
 	memcpy(dest, buffer->data + buffer->next, data_size);
 	buffer->next += data_size;
 }
+
+// Declare a function to initialize a serialized buffer of a defined size
+void init_serialized_buffer_of_size(ser_buff_t **b, int size){
+    // Allocate memory for the buffer struct
+    (*b) = (ser_buff_t *)calloc(1, sizeof(ser_buff_t));
+    
+    // Allocate memory for the buffer data using the specified size
+    (*b)->b = calloc(1, size);
+    
+    // Set the buffer size to the specified size
+    (*b)->size = size;
+    
+    (*b)->next = 0;
+}
