@@ -9,5 +9,5 @@ typedef struct serialized_buffer{
 } ser_buff_t;
 
 void serialize_data(ser_buff_t *b,  const char *data, int val_size);
-
+void init_serialized_buffer(ser_buff_t **b);
 #endif
