@@ -74,3 +74,27 @@ void init_serialized_buffer(ser_buff_t **b){
    
     return;
 }
+// This function skips a certain number of bytes in a serialized buffer.
+void serialize_buffer_skip(ser_buff_t *buffer, int size){
+
+    // Calculate the amount of available space in the buffer.
+    int available_space = buffer->size - buffer->next;
+
+    if(available_space >= size){
+        buffer->next += size;
+        return;
+    }
+
+    while(available_space < size){
+        buffer->size = buffer->size * 2;
+        available_space = buffer->size - buffer->next;
+    }   
+
+    // After creating enough space, use `realloc()` function to reallocate
+    // memory for the buffer and assign it to the pointer `b` inside the ser_buff_t struct.
+    buffer->b = realloc(buffer->b, buffer->size);    
+
+    // Finally, increment the `next` variable by the size of bytes to be skipped,
+    // indicating that the skipped bytes are no longer part of the buffer.
+    buffer->next += size;
+}
