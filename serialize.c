@@ -35,6 +35,7 @@ buff->b = realloc(buff->b, buff->size);
     return;
 }
 
+
 //De-serialization
 void de_serialize_data(char *dest, ser_buff_t *buffer, int data_size){
 	assert(buffer && buffer->data && data_size);
@@ -97,4 +98,20 @@ void serialize_buffer_skip(ser_buff_t *buffer, int size){
     // Finally, increment the `next` variable by the size of bytes to be skipped,
     // indicating that the skipped bytes are no longer part of the buffer.
     buffer->next += size;
+}
+// Declare a function to check if a serialized buffer is empty
+int is_serialized_buffer_empty(const ser_buff_t *b){
+    if (b->next == 0) {
+        return 1; // Return true if next index is 0
+}
+else
+    return 0; // Otherwise, return false
+}
+
+// Declare a function to free the memory allocated for a serialized buffer
+void free_serialized_buffer(ser_buff_t *b){
+    if (b != NULL) { // Check if buffer exists
+        free(b->b); // Free the memory allocated for the buffer data
+        free(b);    // Free the memory allocated for the buffer struct
+    }
 }
