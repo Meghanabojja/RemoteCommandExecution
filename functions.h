@@ -10,4 +10,8 @@ typedef struct serialized_buffer{
 
 void serialize_data(ser_buff_t *b,  const char *data, int val_size);
 void init_serialized_buffer(ser_buff_t **b);
+
+int is_serialized_buffer_empty(const ser_buff_t *b)
+void free_serialized_buffer(ser_buff_t *b)
+    
 #endif
