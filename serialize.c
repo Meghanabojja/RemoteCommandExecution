@@ -35,16 +35,17 @@ buff->b = realloc(buff->b, buff->size);
     return;
 }
 
-
 //De-serialization
-void de_serialize_data(char *dest, ser_buff_t *buffer, int data_size){
-	assert(buffer && buffer->data && data_size);
-	if(data_size == 0) return;
-	assert((buffer->total_size - buffer->next) >= data_size);
+void 
+deserialize(char *dest, buffer_t *b, int size){
+	if(!b || !b->b) assert(0);
+	if(!size) return;	
+	if((b->size - b->next)< size) assert(0);	 
 
-	memcpy(dest, buffer->data + buffer->next, data_size);
-	buffer->next += data_size;
+	memcpy(dest, b->b + b->next, size);
+	b->next += size;
 }
+
 
 // Declare a function to initialize a serialized buffer of a defined size
 void init_serialized_buffer_of_size(ser_buff_t **b, int size){
