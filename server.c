@@ -28,6 +28,35 @@ int calc(int x, int a , int b){
   return y;
 }
 
+void server_msg(buffer_t *recv_buffer, buffer_t *send_buffer){
+
+    /*  Deserializing of Arguments */
+    /* Signature: <rpc return type> server deserialize (buffer_t *ser_data) */
+    /* Deserializing of Arguments is done here. Reconstruct the Arguments */
+
+    int result = server_deserialize(recv_buffer);
+
+    /* Serialize the result */
+    server_serialize(result, send_buffer);
+    printf("result");
+}
+
+int server_deserialize(buffer_t *recv_buffer){
+
+    int x, a, b;
+    deserialize((char *)&x, recv_buffer, sizeof(int));
+    deserialize((char *)&a, recv_buffer, sizeof(int));   
+    deserialize((char *)&b, recv_buffer, sizeof(int));
+
+    /* Call the Actual RPC and return its result */
+    return calc(x, a, b);
+}
+
+void server_serialize(int result, buffer_t *send_buffer){
+
+    serialize(send_buffer, (char *)&result, sizeof(int));
+}
+
 
 int main(int argc, char **argv) {
 
