@@ -20,7 +20,7 @@ int main(int argc, char **argv){
         scanf("%d", &b);
 
     /*Invoke the rpc*/
-    int res = multiply_rpc(x,a, b);
+    int res = calculator(x,a, b);
 
     /*Print the result*/
     printf("res = %d\n", res);
