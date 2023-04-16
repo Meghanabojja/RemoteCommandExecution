@@ -12,13 +12,13 @@ int calc(int x, int a , int b){
   int y=0;
   switch(x) {
     case 1:
-      y = a*b;
+      y = a+b;
       break;
     case 2:
       y = a - b;
       break;
     case 3:
-      y = a + b;
+      y = a * b;
       break;
     case 4:
       if (b != 0) {
