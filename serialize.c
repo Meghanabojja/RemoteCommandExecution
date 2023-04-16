@@ -99,19 +99,19 @@ void buffer_skip(buffer_t *buffer, int size){
     // indicating that the skipped bytes are no longer part of the buffer.
     buffer->next += size;
 }
-// Declare a function to check if a serialized buffer is empty
-int is_serialized_buffer_empty(const ser_buff_t *b){
-    if (b->next == 0) {
-        return 1; // Return true if next index is 0
-}
-else
-    return 0; // Otherwise, return false
-}
-
 // Declare a function to free the memory allocated for a serialized buffer
-void free_serialized_buffer(ser_buff_t *b){
+void free_buffer(buffer_t *b){
     if (b != NULL) { // Check if buffer exists
         free(b->b); // Free the memory allocated for the buffer data
         free(b);    // Free the memory allocated for the buffer struct
     }
+}
+
+// Declare a function to check if a serialized buffer is empty
+
+char buffer_empty(buffer_t *buffer){
+	// Check if the buffer is empty
+	if(buffer->next == 0)	
+		return 1;
+	return 0;
 }
