@@ -115,3 +115,7 @@ char buffer_empty(buffer_t *buffer){
 		return 1;
 	return 0;
 }
+int get_buffer_length(buffer_t *buffer){
+	// Get the length/size of the serialized buffer
+	return buffer->size;
+}
