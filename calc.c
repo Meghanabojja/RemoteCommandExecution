@@ -2,6 +2,11 @@
 #include <memory.h>
 #include <stdlib.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include "server.h"
+#include "functions.h"
+
 int main(int argc, char **argv){
 
     int x,a, b;
