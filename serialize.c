@@ -4,12 +4,12 @@
 #include <assert.h>
 
 
-void serialize_data(ser_buff_t *b, const char *data, int nbytes){
+void serialize(buffer_t *b,  char *data, int nbytes){
     
 // Check if buffer is valid
     if (b == NULL) assert(0);
 
-    ser_buff_t *buff = (ser_buff_t *)(b);
+    buffer_t *buff = (buffer_t *)(b);
     int Remaining_size = buff->size - buff->next;
     char issize = 0;
 
