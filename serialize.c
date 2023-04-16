@@ -124,3 +124,38 @@ int get_buffer_current_pointer_offset(buffer_t *buffer){
 	if(!buffer) return -1;
 	return  buffer->next;
 }
+
+char* get_buffer_current_pointer(buffer_t *buffer){
+	// Get the current pointer of the serialized buffer
+	if(!buffer) return NULL;
+	return  buffer->b + buffer->next;
+}
+
+int get_buffer_datasize(buffer_t *buffer){
+	// Get the data size of the serialized buffer
+	return buffer->next;
+}
+void copy_in_buffer_by_offset(buffer_t *b, 
+                                         int size, 
+                                         char *value, 
+                                         int offset){
+	if(offset > b->size){
+		printf("%s(): Error : Attemt to write outside buffer boundaries\n", __FUNCTION__);
+		return;
+	}
+	
+	memcpy(b->b + offset, value, size);
+}
+
+void truncate_buffer(buffer_t **b){
+	buffer_t *clone = NULL;
+
+	if((*b)->next == (*b)->size){
+		return;
+	}
+	init_buffer_of_size(&clone, (*b)->next);
+	memcpy(clone->b, (*b)->b, (*b)->next);
+	clone->next = clone->size;
+	free_buffer(*b);
+	*b = clone;
+}
