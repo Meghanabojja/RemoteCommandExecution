@@ -18,10 +18,10 @@ int main(int argc, char **argv){
     printf("Enter IInd number : ");
     scanf("%d", &b);
 
-    /Invoke the rpc/
+    /*Invoke the rpc*/
     int res = multiply_rpc(x,a, b);
 
-    /Print the result/
+    /*Print the result*/
     printf("res = %d\n", res);
     return 0; 
 
@@ -47,12 +47,12 @@ void msg_transfer(buffer_t *client_send_buffer, buffer_t *client_recv_buffer){
     rc = sendto(sockfd, client_send_buffer->b, get_buffer_datasize(client_send_buffer), 
                 0, (struct sockaddr *)&dest, sizeof(struct sockaddr));
 
-    printf("%s() : %d bytes sent\n", _FUNCTION_, rc);
+    printf("%s() : %d bytes sent\n", __FUNCTION__, rc);
 
     recv_size = recvfrom(sockfd, client_recv_buffer->b, get_buffer_length(client_recv_buffer), 
                          0, (struct sockaddr *)&dest, &addr_len);
 
-    printf("%s() : %d bytes received\n", _FUNCTION_, recv_size);
+    printf("%s() : %d bytes received\n", __FUNCTION__, recv_size);
 }
 /* client_serialize() */
 buffer_t *client_serialize(int num1, int num2, int num3){
