@@ -119,3 +119,8 @@ int get_buffer_length(buffer_t *buffer){
 	// Get the length/size of the serialized buffer
 	return buffer->size;
 }
+int get_buffer_current_pointer_offset(buffer_t *buffer){
+	// Get the current pointer offset of the serialized buffer
+	if(!buffer) return -1;
+	return  buffer->next;
+}
