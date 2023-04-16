@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <memory.h>
+#include "server.h"
+#include "functions.h"
 /* This function takes three integer inputs, and returns an integer output.
    The input x is used as the 'operator', which determines the operation
    to be performed on inputs a and b. */
