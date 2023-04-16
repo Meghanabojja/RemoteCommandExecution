@@ -59,10 +59,10 @@ void init_buffer_of_size(buff_t **b, int size){
     
     (*b)->next = 0;
 }
-/ Declare a function to initialize a serialized buffer
-void init_serialized_buffer(ser_buff_t **b){
+// Declare a function to initialize a serialized buffer
+void init_buffer(buffer_t **b){
     // Allocate memory for the buffer struct
-    (*b) = (ser_buff_t *)calloc(1, sizeof(ser_buff_t));
+    (*b) = (buffer_t *)calloc(1, sizeof(buffer_t));
     
     // Allocate memory for the buffer data
     (*b)->b = calloc(1, BUFFER_DEFAULT_SIZE);
