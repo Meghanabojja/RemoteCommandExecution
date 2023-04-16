@@ -48,7 +48,7 @@ void deserialize(char *dest, buffer_t *b, int size){
 
 
 // Declare a function to initialize a serialized buffer of a defined size
-void init_buffer_of_size(buff_t **b, int size){
+void init_buffer_of_size(buffer_t **b, int size){
     // Allocate memory for the buffer struct
     (*b) = (buff_t *)calloc(1, sizeof(buff_t));
     
@@ -172,6 +172,6 @@ void buffer_details(buffer_t *b, const char *fn, int lineno){
     printf("next = %d\n", b->next);
 }
 
-void reset_serialize_buffer(ser_buff_t *b){
+void reset_serialize_buffer(buffer_t *b){
 	b->next = 0;	
 }
