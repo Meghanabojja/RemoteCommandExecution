@@ -65,3 +65,14 @@ buffer_t *client_serialize(int num1, int num2, int num3){
 
     return send_buffer;
 }
+
+int client_deserialize(buffer_t *recv_buffer){
+    /* Reconstruct the result obtained from the server */
+    int result = 0;
+    deserialize((char *)&result, recv_buffer, sizeof(int));
+    return result;
+}
+
+void init_rpc_infra(){
+    /* Initialize any necessary infrastructure before starting RPC, if any */
+}
