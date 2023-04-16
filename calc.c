@@ -76,3 +76,38 @@ int client_deserialize(buffer_t *recv_buffer){
 void init_rpc_infra(){
     /* Initialize any necessary infrastructure before starting RPC, if any */
 }
+int calculator(int x, int a, int b){
+    /* Initialize RPC buffers */
+    init_rpc_infra();
+
+    /*Serialize/Marshal the arguments */
+    /* Signature: buffer_t* ( client_serialize) <Arg1, Arg2, ...> */
+    buffer_t *send_buffer = client_serialize(x, a, b);
+    buffer_t *recv_buffer = NULL;
+
+    /* Prepare for receiving the data from the server */
+    init_buffer_of_size(&recv_buffer, MAX_RECV_SEND_BUFF_SIZE);
+
+    /*Send the serialized data to the server and wait for the reply */
+    /* Function that will work for all RPCs */
+    /* Signature: void (msg_transfer) <buffer_t *, buffer_t *> */
+    msg_transfer(send_buffer, recv_buffer);
+
+    /* After sending the data to the server, client should free the memory
+     * held by the send_buffer */
+    free_buffer(send_buffer);
+    send_buffer = NULL;
+
+    
+
+    /*Unmarshal the serialized data (result) received from the server,
+     * and reconstruct the RPC return type */
+    /* Signature: <rpc return type> (client_deserialize) <buffer_t *> */
+    int result = client_deserialize(recv_buffer);
+
+    /* Client has successfully reconstructed the result object from
+     * serialized data received from the server. Time to free recv_buffer */
+    free_buffer(recv_buffer);
+
+    return result;
+}
