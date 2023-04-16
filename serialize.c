@@ -36,8 +36,7 @@ buff->b = realloc(buff->b, buff->size);
 }
 
 //De-serialization
-void 
-deserialize(char *dest, buffer_t *b, int size){
+void deserialize(char *dest, buffer_t *b, int size){
 	if(!b || !b->b) assert(0);
 	if(!size) return;	
 	if((b->size - b->next)< size) assert(0);	 
@@ -48,9 +47,9 @@ deserialize(char *dest, buffer_t *b, int size){
 
 
 // Declare a function to initialize a serialized buffer of a defined size
-void init_serialized_buffer_of_size(ser_buff_t **b, int size){
+void init_buffer_of_size(buff_t **b, int size){
     // Allocate memory for the buffer struct
-    (*b) = (ser_buff_t *)calloc(1, sizeof(ser_buff_t));
+    (*b) = (buff_t *)calloc(1, sizeof(buff_t));
     
     // Allocate memory for the buffer data using the specified size
     (*b)->b = calloc(1, size);
