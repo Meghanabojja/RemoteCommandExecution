@@ -50,7 +50,7 @@ void deserialize(char *dest, buffer_t *b, int size){
 // Declare a function to initialize a serialized buffer of a defined size
 void init_buffer_of_size(buffer_t **b, int size){
     // Allocate memory for the buffer struct
-    (*b) = (buff_t *)calloc(1, sizeof(buff_t));
+    (*b) = (buffer_t *calloc(1, sizeof(buffer_t));
     
     // Allocate memory for the buffer data using the specified size
     (*b)->b = calloc(1, size);
