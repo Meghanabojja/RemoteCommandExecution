@@ -9,12 +9,17 @@ RPC is often used in distributed computing environments where multiple computers
 we use serialization and De serialization for this procedure calls.
 
 compiling serializing 
+
 gcc -g -c serialize.c -o serialize.o
 
 client side command execution
+
 gcc -g -c calc.c -o calc.o
+
 gcc -g calc.o serialize.o -o client
 
 server side command execution
+
 gcc -g -c server.c -o server.o
+
 gcc -g server.o serialize.o -o server
