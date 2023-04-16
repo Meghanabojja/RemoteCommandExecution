@@ -34,7 +34,7 @@ void deserialize(char *dest, buffer_t *b, int val_size);
 /* free Resourse*/
 void free_buffer(buffer_t *b);
 
-/reset function/
+/*reset function*/
 void truncate_buffer(buffer_t **b);
 void reset_buffer(buffer_t *b);
 /* Details*/
