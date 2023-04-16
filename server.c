@@ -42,7 +42,7 @@ void server_msg(buffer_t *recv_buffer, buffer_t *send_buffer){
 
     /* Serialize the result */
     server_serialize(result, send_buffer);
-    printf("result");
+    /*printf("result");*/
 }
 
 int server_deserialize(buffer_t *recv_buffer){
