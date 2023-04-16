@@ -1,5 +1,5 @@
-#ifndef __RPc_
-#define __RPC_
+#ifndef __server__
+#define __server__
 
 #define MAX_RECV_SEND_BUFF_SIZE 2048
 
