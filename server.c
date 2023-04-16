@@ -99,3 +99,26 @@ int main(int argc, char **argv) {
 
     printf("Server ready to service RPC calls\n");
 
+READ:
+    reset_serialize_buffer(server_recv_ser_buffer);
+
+    /* Receive the data from client in local buffer */
+
+    len = recvfrom(udp_sock_fd, server_recv_ser_buffer->b, get_buffer_length(server_recv_ser_buffer),
+                   0, (struct sockaddr *)&client_addr, &addr_len);
+    printf("No of bytes received from client = %d\n", len);
+
+    /* Prepare the buffer to store the reply message to be sent to client */
+    reset_serialize_buffer(server_send_ser_buffer);
+
+    server_msg(server_recv_ser_buffer, /* Serialized data which came from client */
+                           server_send_ser_buffer); /* Empty serialized buffer */
+
+    /* Send the serialized result data back to client */
+    len = sendto(udp_sock_fd, server_send_ser_buffer->b, get_buffer_datasize(server_send_ser_buffer),
+                 0, (struct sockaddr *)&client_addr, sizeof(struct sockaddr));
+
+    printf("RPC server replied with %d bytes message\n", len);
+    goto READ;
+    return 0;
+}
