@@ -49,3 +49,19 @@ void msg_transfer(buffer_t *client_send_buffer, buffer_t *client_recv_buffer){
 
     printf("%s() : %d bytes received\n", _FUNCTION_, recv_size);
 }
+/* client_serialize() */
+buffer_t *client_serialize(int num1, int num2, int num3){
+    buffer_t *send_buffer = NULL;
+    init_buffer_of_size(&send_buffer, MAX_RECV_SEND_BUFF_SIZE);
+
+    /* Serialize the first argument */
+    serialize(send_buffer, (char *)&num1, sizeof(int));
+
+    /* Serialize the second argument */
+    serialize(send_buffer, (char *)&num2, sizeof(int));
+
+    /* Serialize the third argument */
+    serialize(send_buffer, (char *)&num3, sizeof(int));
+
+    return send_buffer;
+}
