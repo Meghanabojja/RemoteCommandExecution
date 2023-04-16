@@ -2,6 +2,7 @@
 #include <memory.h>
 #include <stdlib.h>
 #include <assert.h>
+#include "functions.h"
 
 
 void serialize(buffer_t *b,  char *data, int nbytes){
@@ -158,4 +159,19 @@ void truncate_buffer(buffer_t **b){
 	clone->next = clone->size;
 	free_buffer(*b);
 	*b = clone;
+}
+
+void reset_buffer(buffer_t *b){
+	b->next = 0;	
+}
+
+void buffer_details(buffer_t *b, const char *fn, int lineno){
+
+    printf("%s():%d : starting address = 0x%x\n", fn, lineno, (unsigned int)b);
+    printf("size = %d\n", b->size);
+    printf("next = %d\n", b->next);
+}
+
+void reset_serialize_buffer(ser_buff_t *b){
+	b->next = 0;	
 }
